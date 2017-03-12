@@ -1,29 +1,27 @@
-# Download base image CentOS 7
-FROM centos:centos7
+# Download base image Alpine Linux
+FROM alpine
 LABEL maintainer "Lukas Maly <Iam@LukasMaly.NET>"
 
-# Update CentOS Software repository
-#RUN yum -y update && yum -y upgrade
-
 # Define the ENV variable
-ENV teco_conf_dir /etc/teco
-ENV teco_conf_file PLCComS.ini
-ENV teco_log_dir /var/log/teco
-ENV teco_log_file PLCComS.log
-ENV teco /opt/teco
+ENV TECO_CONF_DIR /etc/teco
+ENV TECO_CONF_FILE PLCComS.ini
+ENV TECO_LOG_DIR /var/log/teco
+ENV TECO_LOG_FILE PLCComS.log
+ENV TECO /opt/teco
 
-RUN mkdir -p ${teco_conf_dir}
-RUN mkdir -p ${teco_log_dir}
-RUN mkdir -p ${teco}
+RUN mkdir -p ${TECO_CONF_DIR}
+RUN mkdir -p ${TECO_LOG_DIR}
+RUN mkdir -p ${TECO}
 
 # Copy binary file
-COPY PLCComS_x86_64 ${teco}
+COPY PLCComS_x86_64 ${TECO}
 
 # Copy PLCComS configuration
-COPY ${teco_conf_file} ${teco_conf_dir}
+COPY PLCComS.ini ${TECO_CONF_DIR}
+COPY FIXED_Foxtrot.pub ${TECO_CONF_DIR}
 
 # Volume configuration
-VOLUME ["${teco_log_dir}", "${teco_conf_dir}"]
+VOLUME ["/var/log/teco", "/etc/teco"]
 
 # Configure Services and Port
 COPY start.sh /start.sh

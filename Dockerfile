@@ -1,5 +1,5 @@
-# Download base image Alpine Linux
-FROM alpine
+# Download base image Linux CentOS
+FROM centos
 LABEL maintainer "Lukas Maly <Iam@LukasMaly.NET>"
 
 # Define the ENV variable
@@ -9,18 +9,9 @@ ENV TECO_LOG_DIR /var/log/teco
 ENV TECO_LOG_FILE PLCComS.log
 ENV TECO_DIR /opt/teco
 
-# Install cURL
-RUN apk add --update curl && \
-    rm -rf /var/cache/apk/*
-
 RUN mkdir -p ${TECO_CONF_DIR}
 RUN mkdir -p ${TECO_LOG_DIR}
 RUN mkdir -p ${TECO_DIR}
-
-#RUN mkdir -p ${TECO_DIR} \
-#	&& cd ${TECO_DIR} \
-#	&& curl -o PLCComS_x86_64 https://github.com/smejdil/PLCComS/raw/master/PLCComS_x86_64 \
-#	&& chmod 700 ${TECO_DIR}/PLCComS_x86_64
 
 # Copy binary file
 COPY PLCComS_x86_64 ${TECO_DIR}

@@ -6,6 +6,51 @@
 
 
 ---------------------------------------------------------------------------
+    Verze 4.9					Zkompilovano 03.07.2018
+---------------------------------------------------------------------------
+
+	- Pridana volba DATE_TIME_DECIMAL do INI souboru, ktera prepne zobrazeni datovych typu DT a DATE z INT64 na LREAL zobrazeni.
+	- Pridana podpora odchylky 'delta' pro datove typy: LINT, ULINT, DWORD, TIME a TOD
+
+	- Opravena chyba zpracovani odchylky 'delta': Nefunkcni pri zaporne zmene promenne. DIFF: se posilal vzdy.
+	- Opravena chyba zpracovani odchylky 'delta': Nefunkcni u datovych typu DT a DATE
+	- Opravena chyba, kdy se pri nenastavene IP adrese PLC posilal DIFF: promenne __PF_CRC
+
+---------------------------------------------------------------------------
+    Verze 4.8					Zkompilovano 25.04.2018
+---------------------------------------------------------------------------
+
+	- Pridana promenna IPADDR_LOCAL pro nastaveni ip adresy rozhranni, na kterem server posloucha.
+	- Na zacatek logu pridan vypis verzi.
+	- Chybove zpravy EPSNET rozsireny o anglictinu.
+
+	- Opravena chyba komunikace EPSNET. Kdyz bylo PLC v Bootu, tak nebylo mozne PLC updatovat pomoci FWUpdateru.
+	- Opraveno chovani serveru. Server loguje chybu pouze jednou a to jako odpoved na dotaz.
+
+---------------------------------------------------------------------------
+    Verze 4.7					Zkompilovano 07.12.2017
+---------------------------------------------------------------------------
+
+	- Prikaz GETFILE: a GETFILEINFO: je rozsiren o priznak 'A' nebo 'a', ktery rika, ze soubor se posila textove. Pro kodovani je pouzito BASE64.
+	  Prikaz GETFILEINFO: pak vraci velikost enkodovaneho souboru.
+
+	- Opraveno prime adresovani. V adrese se ignorovala velikost datoveho typu (%SL48, %RW10, ...).
+	- Opravena chyba testu CRC projektu. CRC se nezpracovavalo neznamenkove.
+
+---------------------------------------------------------------------------
+    Verze 4.6					Zkompilovano 22.09.2017
+---------------------------------------------------------------------------
+
+	- Pridana sekce iFoxtrot do INI souboru, ktera je potreba pro aplikaci iFoxtrot.
+	- Pridana promenna COMM_SCHED_PRI do INI souboru pro nastaveni priority.
+	- Pridano logovani chyb EPSNETU. Zatim v cestine.
+	- Odstranen podmineny preklad pro ID-XY.
+
+	- Opravena chyba ve funkci IdentPlc(). Funkce chybne interpretovala verzi SW.
+	- Opravena chyba ve stahovani souboru. Pozadavek pro stahnuti souboru neprerusil aktivni stahovani.
+	- Opraveno zpracovani neznamenkovych datovych typu: USINT, UINT, UDINT, WORD a DWORD
+
+---------------------------------------------------------------------------
     Verze 4.5					Zkompilovano 01.03.2017
 ---------------------------------------------------------------------------
 

@@ -12,10 +12,13 @@ ENV TECO_DIR /opt/teco
 RUN mkdir -p ${TECO_CONF_DIR}
 RUN mkdir -p ${TECO_LOG_DIR}
 RUN mkdir -p ${TECO_DIR}
+RUN mkdir -p ${TECO_DIR}/lib_x86_64
 
 # Copy binary file
 COPY PLCComS_x86_64 ${TECO_DIR}
 RUN chmod 700 ${TECO_DIR}/PLCComS_x86_64
+
+COPY lib_x86_64/libcrypto.so.1.0.0 ${TECO_DIR}/lib_x86_64
 
 # Copy PLCComS configuration
 COPY PLCComS.ini ${TECO_CONF_DIR}
